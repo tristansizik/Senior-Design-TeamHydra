@@ -425,8 +425,36 @@ void txlora(byte *frame, byte datalen) {
     printf("send: %s\n", frame);
 }
 
+byte * fileToString ( char* fileName)
+{
+    byte * returnString;
+    FILE * pFile = fopen(fileName,"r");
+    int c,i,n=0;
+
+
+    if(pFile == NULL) perror ("Error opening file");
+    else
+    {
+        do{
+	c = fgetc(pFile);
+	n++;
+	} while (c != EOF);
+	
+	returnString = (byte*) calloc(n,sizeof(byte));
+	fclose(pFile);
+
+	pFile = fopen(fileName,"r");
+	for (i = 0; i < n-1 ; i++)
+	    *(returnString + i) = (byte)fgetc(pFile);
+    }
+    return returnString;
+}
+
 int main (int argc, char *argv[]) {
 
+    char fileName[10] = "Data.txt";
+    byte * tmp = fileToString(fileName);
+    
     if (argc < 2) {
         printf ("Usage: argv[0] sender|rec [message]\n");
         exit(1);
@@ -459,6 +487,8 @@ int main (int argc, char *argv[]) {
         while(1) {
             txlora(hello, strlen((char *)hello));
             delay(5000);
+	    txlora(tmp, strlen((char *)tmp));
+	    delay(5000);
         }
     } else {
 
