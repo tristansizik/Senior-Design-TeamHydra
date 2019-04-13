@@ -31,7 +31,7 @@ References:
 ****For Running At Startup:
 	sudo nano /etc/rc.local
 	type before exit:
-	sudo /home/pi/rpi-lora-tranceiver-mod/dragino_lora_app/dragino_lora_app (rec or sender) & 
+	sudo /home/pi/rpi-lora-tranceiver-mod/dragino_lora_app/dragino_lora_app (rec / sender) & 
 	
-                           ~~~~~rec or sender based off if client or server~~~~~
+                    ~~~~~rec or sender based off if pi running is client or server~~~~~
 ~~~~~ampersand (&) is IMPORTANT or else program's infinite while loop will obstruct rpi healthy boot~~~~~
