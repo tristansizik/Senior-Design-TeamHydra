@@ -425,6 +425,13 @@ void txlora(byte *frame, byte datalen) {
     printf("send: %s\n", frame);
 }
 
+/*===================================================
+  Added fileToString function in order to read from a File into a byte pointer 
+  return type. Did so as the txlora function
+  requires a byte type as a parameter. Easy conversion as a byte is essentially
+  a character size, therefore we can caste the integer to byte from the fgetc command
+  ===================================================*/
+
 byte * fileToString ( char* fileName)
 {
     byte * returnString;
@@ -438,22 +445,22 @@ byte * fileToString ( char* fileName)
         do{
 	c = fgetc(pFile);
 	n++;
-	} while (c != EOF);
+	} while (c != EOF);		//count the file size
 	
 	returnString = (byte*) calloc(n,sizeof(byte));
 	fclose(pFile);
 
 	pFile = fopen(fileName,"r");
 	for (i = 0; i < n-1 ; i++)
-	    *(returnString + i) = (byte)fgetc(pFile);
+	    *(returnString + i) = (byte)fgetc(pFile); 
     }
     return returnString;
 }
 
 int main (int argc, char *argv[]) {
 
-    char fileName[10] = "Data.txt";
-    byte * tmp = fileToString(fileName);
+    char fileName[10] = "Data.txt";			//modify fileName array/size in order to be same name
+    byte * dataInfo = fileToString(fileName); 		//as file
     
     if (argc < 2) {
         printf ("Usage: argv[0] sender|rec [message]\n");
@@ -485,9 +492,13 @@ int main (int argc, char *argv[]) {
             strncpy((char *)hello, argv[2], sizeof(hello));
 
         while(1) {
+<<<<<<< HEAD
           //  txlora(hello, strlen((char *)hello));
           //  delay(5000);
 	    txlora(tmp, strlen((char *)tmp));
+=======
+	    txlora(dataInfo, strlen((char *)dataInfo));
+>>>>>>> 6651908e906f83c79f9c81ab1c826a0002812b7f
 	    delay(5000);
         }
     } else {
