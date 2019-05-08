@@ -1,4 +1,1 @@
-Temperature: 23.49 C 
-Temperature: 23.49 C 
-Temperature: 23.49 C 
-Temperature: 23.49 C 
+P: 1008.4 mbar  14.625 psi	T: 25.21 C  57.21 FP: 1008.4 mbar  14.625 psi	T: 25.29 C  57.29 FP: 1008.4 mbar  14.626 psi	T: 25.35 C  57.35 F

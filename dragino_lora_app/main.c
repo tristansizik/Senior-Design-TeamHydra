@@ -485,8 +485,8 @@ int main (int argc, char *argv[]) {
             strncpy((char *)hello, argv[2], sizeof(hello));
 
         while(1) {
-            txlora(hello, strlen((char *)hello));
-            delay(5000);
+          //  txlora(hello, strlen((char *)hello));
+          //  delay(5000);
 	    txlora(tmp, strlen((char *)tmp));
 	    delay(5000);
         }
